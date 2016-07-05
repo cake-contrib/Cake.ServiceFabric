@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ServiceManifest xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Name="ExampleActorPkg" Version="1.0.0" xmlns="http://schemas.microsoft.com/2011/01/fabric">
+  <ServiceTypes>
+    <StatefulServiceType ServiceTypeName="ExampleActorServiceType" HasPersistedState="true">
+      <Extensions>
+        <Extension Name="__GeneratedServiceType__" GeneratedId="297f328e-162a-4c9d-bbaf-e40683d5de8a|Persisted">
+          <GeneratedNames xmlns="http://schemas.microsoft.com/2015/03/fabact-no-schema">
+            <DefaultService Name="ExampleActorService" />
+            <ServiceEndpoint Name="ExampleActorServiceEndpoint" />
+            <ReplicatorEndpoint Name="ExampleActorServiceReplicatorEndpoint" />
+            <ReplicatorConfigSection Name="ExampleActorServiceReplicatorConfig" />
+            <ReplicatorSecurityConfigSection Name="ExampleActorServiceReplicatorSecurityConfig" />
+            <StoreConfigSection Name="ExampleActorServiceLocalStoreConfig" />
+          </GeneratedNames>
+        </Extension>
+      </Extensions>
+    </StatefulServiceType>
+  </ServiceTypes>
+  <CodePackage Name="Code" Version="1.0.0">
+    <EntryPoint>
+      <ExeHost>
+        <Program>ExampleActor.exe</Program>
+      </ExeHost>
+    </EntryPoint>
+  </CodePackage>
+  <ConfigPackage Name="Config" Version="1.0.0" />
+  <Resources>
+    <Endpoints>
+      <Endpoint Name="ExampleActorServiceEndpoint" />
+      <Endpoint Name="ExampleActorServiceReplicatorEndpoint" />
+    </Endpoints>
+  </Resources>
+  <!-- The content will be generated during build -->
+</ServiceManifest>

@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{A07B5EB6-E848-4116-A8D0-A826331D98C6}") = "ExampleApp", "ExampleApp\ExampleApp.sfproj", "{96431D12-5109-450C-87C0-B1AA46241B3B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleService", "ExampleService\ExampleService.csproj", "{B511352D-B8F2-4720-ADE9-28AC4F697441}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleActor", "ExampleActor\ExampleActor.csproj", "{DB44FB34-8CEC-422E-87BA-E804A0F27743}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleActor.Interfaces", "ExampleActor.Interfaces\ExampleActor.Interfaces.csproj", "{951CB1C3-41DC-49A2-9C40-81568C0AA1DE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{96431D12-5109-450C-87C0-B1AA46241B3B}.Debug|x64.ActiveCfg = Debug|x64
+		{96431D12-5109-450C-87C0-B1AA46241B3B}.Debug|x64.Build.0 = Debug|x64
+		{96431D12-5109-450C-87C0-B1AA46241B3B}.Debug|x64.Deploy.0 = Debug|x64
+		{96431D12-5109-450C-87C0-B1AA46241B3B}.Release|x64.ActiveCfg = Release|x64
+		{96431D12-5109-450C-87C0-B1AA46241B3B}.Release|x64.Build.0 = Release|x64
+		{96431D12-5109-450C-87C0-B1AA46241B3B}.Release|x64.Deploy.0 = Release|x64
+		{B511352D-B8F2-4720-ADE9-28AC4F697441}.Debug|x64.ActiveCfg = Debug|x64
+		{B511352D-B8F2-4720-ADE9-28AC4F697441}.Debug|x64.Build.0 = Debug|x64
+		{B511352D-B8F2-4720-ADE9-28AC4F697441}.Release|x64.ActiveCfg = Release|x64
+		{B511352D-B8F2-4720-ADE9-28AC4F697441}.Release|x64.Build.0 = Release|x64
+		{DB44FB34-8CEC-422E-87BA-E804A0F27743}.Debug|x64.ActiveCfg = Debug|x64
+		{DB44FB34-8CEC-422E-87BA-E804A0F27743}.Debug|x64.Build.0 = Debug|x64
+		{DB44FB34-8CEC-422E-87BA-E804A0F27743}.Release|x64.ActiveCfg = Release|x64
+		{DB44FB34-8CEC-422E-87BA-E804A0F27743}.Release|x64.Build.0 = Release|x64
+		{951CB1C3-41DC-49A2-9C40-81568C0AA1DE}.Debug|x64.ActiveCfg = Debug|x64
+		{951CB1C3-41DC-49A2-9C40-81568C0AA1DE}.Debug|x64.Build.0 = Debug|x64
+		{951CB1C3-41DC-49A2-9C40-81568C0AA1DE}.Release|x64.ActiveCfg = Release|x64
+		{951CB1C3-41DC-49A2-9C40-81568C0AA1DE}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

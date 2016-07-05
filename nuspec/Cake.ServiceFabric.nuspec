@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+    <id>Cake.ServiceFabric</id>
+    <version>0.0.0</version>
+    <authors>Martin Björkström</authors>
+    <owners>Martin Björkström</owners>
+    <description>Cake Addin that wraps the Azure Service Fabric SDK Cmdlets.</description>
+    <summary>Cake Addin that wraps the Azure Service Fabric Cmdlets.</summary>
+    <licenseUrl>https://github.com/mholo65/Cake.ServiceFabric/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/mholo65/Cake.ServiceFabric</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <copyright>Copyright (c) Martin Björkström</copyright>
+    <tags>Cake Script Build ServiceFabric</tags>
+  </metadata>
+  <files>
+    <file src="Cake.ServiceFabric.dll" target="lib\net45\" />
+    <file src="Cake.ServiceFabric.xml" target="lib\net45\" />
+    <file src="LICENSE" />
+  </files>
+</package>
