@@ -39,5 +39,11 @@ namespace Cake.ServiceFabric
             // TODO: Implement publishProfile to ClusterConnectionSettings
             throw new NotImplementedException();
         }
+
+        [CakePropertyAlias]
+        public static IServiceFabricRunner ServiceFabric(this ICakeContext context)
+        {
+            return new ServiceFabricRunner(context.Registry, context.Environment, new PowerShell(context.Log));
+        }
     }
 }

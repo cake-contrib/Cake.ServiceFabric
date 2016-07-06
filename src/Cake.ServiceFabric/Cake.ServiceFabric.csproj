@@ -51,9 +51,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IServiceFabricClusterConnection.cs" />
+    <Compile Include="IServiceFabricRunner.cs" />
     <Compile Include="ServiceFabricApplicationStatus.cs" />
     <Compile Include="ServiceFabricClusterConnection.cs" />
     <Compile Include="ServiceFabricClusterConnectionFactory.cs" />
+    <Compile Include="ServiceFabricRunner.cs" />
     <Compile Include="Utilities\IPowerShell.cs" />
     <Compile Include="Utilities\PowerShell.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

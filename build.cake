@@ -98,17 +98,26 @@ Task("Run-Integration-Tests")
     .IsDependentOn("Create-NuGet-Package")
     .Does(() =>
 {
-    var toolsDir = Directory("./example/tools");
+    var toolssDir = new DirectoryPath("./example/tools");
+    var addinsDir = new DirectoryPath("./example/tools/Addins");
 
-    CleanDirectories(toolsDir);
+    CleanDirectories(new [] { addinsDir, toolssDir });
 
     NuGetInstall("Cake.ServiceFabric", new NuGetInstallSettings {
         Source = new List<string> {
             parameters.Paths.Directories.NugetRoot.MakeAbsolute(Context.Environment).FullPath
         },
         Prerelease = true,
-        OutputDirectory = toolsDir,
+        OutputDirectory = addinsDir,
         ExcludeVersion = true
+    });
+    
+    CakeExecuteScript("./example/build.cake", new CakeSettings {
+        ArgumentCustomization = args => {
+            args.Append("--paths_tools=./tools");
+            args.Append("--paths_addins=./tools/Addins");
+            return args;
+        }
     });
 });
 
