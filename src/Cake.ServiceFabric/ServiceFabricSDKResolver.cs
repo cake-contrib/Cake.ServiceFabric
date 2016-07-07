@@ -2,7 +2,7 @@
 using Cake.Core;
 using Cake.Core.IO;
 
-namespace Cake.ServiceFabric.Utilities
+namespace Cake.ServiceFabric
 {
     internal static class ServiceFabricSDKResolver
     {

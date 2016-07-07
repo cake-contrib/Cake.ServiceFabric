@@ -12,16 +12,16 @@ namespace Cake.ServiceFabric
 {
     internal sealed class ServiceFabricClusterConnection : IServiceFabricClusterConnection
     {
-        private IPowerShell _powerShell;
+        private IPowerShellHost _powerShellHost;
 
-        public ServiceFabricClusterConnection(IPowerShell powershell)
+        public ServiceFabricClusterConnection(IPowerShellHost powershellHost)
         {
-            if(powershell == null)
+            if(powershellHost == null)
             {
-                throw new ArgumentNullException(nameof(powershell));
+                throw new ArgumentNullException(nameof(powershellHost));
             }
 
-            _powerShell = powershell;
+            _powerShellHost = powershellHost;
         }
 
         public void Connect(ServiceFabricClusterConnectionSettings settings, FilePath sdkModulePath)
@@ -30,14 +30,17 @@ namespace Cake.ServiceFabric
             {
                 throw new ArgumentNullException(nameof(settings));
             }
-            
-            _powerShell.Invoke("Import-Module", sdkModulePath.FullPath.Replace("/","\\"));
-            var output = _powerShell.Invoke("Connect-ServiceFabricCluster");
+
+            using (var command = _powerShellHost.CreateCommand("Import-Module"))
+            {
+                command.AddArgument(sdkModulePath.FullPath.Replace("/", "\\"));
+                command.Invoke();
+            }
         }
 
         public void Dispose()
         {
-            _powerShell.Dispose();
+            _powerShellHost.Dispose();
         }
 
         public ServiceFabricApplicationStatus GetApplicationStatus(string applicationName)
@@ -47,11 +50,11 @@ namespace Cake.ServiceFabric
                 throw new ArgumentNullException(nameof(applicationName));
             }
 
-            var output = _powerShell.Invoke(
-                "Get-ServiceFabricApplicationStatus", 
-                new Dictionary<string, object> {
-                    { "ApplicationName",  applicationName }
-                });
+            //var output = _powerShellHost.Invoke(
+            //    "Get-ServiceFabricApplicationStatus", 
+            //    new Dictionary<string, object> {
+            //        { "ApplicationName",  applicationName }
+            //    });
 
             return new ServiceFabricApplicationStatus();
         }

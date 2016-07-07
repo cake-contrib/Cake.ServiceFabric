@@ -56,11 +56,13 @@
     <Compile Include="ServiceFabricClusterConnection.cs" />
     <Compile Include="ServiceFabricClusterConnectionFactory.cs" />
     <Compile Include="ServiceFabricRunner.cs" />
-    <Compile Include="Utilities\IPowerShell.cs" />
-    <Compile Include="Utilities\PowerShell.cs" />
+    <Compile Include="Utilities\IPowerShellHost.cs" />
+    <Compile Include="Utilities\IPowerShellCommand.cs" />
+    <Compile Include="Utilities\PowerShellHost.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ServiceFabricClusterConnectionSettings.cs" />
-    <Compile Include="Utilities\ServiceFabricSDKResolver.cs" />
+    <Compile Include="Utilities\PowerShellCommand.cs" />
+    <Compile Include="ServiceFabricSDKResolver.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

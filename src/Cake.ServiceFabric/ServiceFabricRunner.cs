@@ -12,10 +12,10 @@ namespace Cake.ServiceFabric
     internal sealed class ServiceFabricRunner : IServiceFabricRunner
     {
         private readonly ICakeEnvironment _environment;
-        private readonly IPowerShell _powerShell;
+        private readonly IPowerShellHost _powerShell;
         private readonly FilePath _sdkModulePath;
 
-        public ServiceFabricRunner(IRegistry registry, ICakeEnvironment environment, IPowerShell powershell)
+        public ServiceFabricRunner(IRegistry registry, ICakeEnvironment environment, IPowerShellHost powershell)
         {
             _environment = environment;
             _sdkModulePath = ServiceFabricSDKResolver.ResolvePSModulePath(registry);
@@ -24,15 +24,15 @@ namespace Cake.ServiceFabric
 
         public void CreatePackage(DirectoryPath packagePath, FilePath outputFile, bool force = false)
         {
-            _powerShell.Invoke("Import-Module", _sdkModulePath.FullPath.Replace("/", "\\"));
-            _powerShell.Invoke("New-ServiceFabricApplicationPackage",
-                new Dictionary<string, object>
-                {
-                    { "ApplicationPackagePath", packagePath.MakeAbsolute(_environment).FullPath.Replace("/", "\\") },
-                    { "SFpkgName", outputFile.GetFilename() },
-                    { "SFpkgOutputPath", outputFile.GetDirectory().MakeAbsolute(_environment).FullPath.Replace("/", "\\") },
-                    { "Force", force }
-                });
+            //_powerShell.Invoke("Import-Module", _sdkModulePath.FullPath.Replace("/", "\\"));
+            //_powerShell.Invoke("New-ServiceFabricApplicationPackage",
+            //    new Dictionary<string, object>
+            //    {
+            //        { "ApplicationPackagePath", packagePath.MakeAbsolute(_environment).FullPath.Replace("/", "\\") },
+            //        { "SFpkgName", outputFile.GetFilename() },
+            //        { "SFpkgOutputPath", outputFile.GetDirectory().MakeAbsolute(_environment).FullPath.Replace("/", "\\") },
+            //        { "Force", force }
+            //    });
         }
     }
 }

@@ -10,7 +10,7 @@ namespace Cake.ServiceFabric
 {
     internal static class ServiceFabricClusterConnectionFactory
     {
-        public static IServiceFabricClusterConnection Create(IRegistry registry, IPowerShell powershell, ServiceFabricClusterConnectionSettings settings)
+        public static IServiceFabricClusterConnection Create(IRegistry registry, IPowerShellHost powershell, ServiceFabricClusterConnectionSettings settings)
         {
             var connection = new ServiceFabricClusterConnection(powershell);
             var sdkModulePath = ServiceFabricSDKResolver.ResolvePSModulePath(registry);

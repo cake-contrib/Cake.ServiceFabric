@@ -26,7 +26,7 @@ namespace Cake.ServiceFabric
         {
             return ServiceFabricClusterConnectionFactory.Create(
                 context.Registry,
-                new PowerShell(context.Log),
+                new Utilities.PowerShellHost(context.Log),
                 settings);
         }
 
@@ -43,7 +43,7 @@ namespace Cake.ServiceFabric
         [CakePropertyAlias]
         public static IServiceFabricRunner ServiceFabric(this ICakeContext context)
         {
-            return new ServiceFabricRunner(context.Registry, context.Environment, new PowerShell(context.Log));
+            return new ServiceFabricRunner(context.Registry, context.Environment, new Utilities.PowerShellHost(context.Log));
         }
     }
 }
