@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Cake.Core;
 using Cake.Core.IO;
+using Cake.ServiceFabric.Extensions;
 using Cake.ServiceFabric.Utilities;
 
 namespace Cake.ServiceFabric
@@ -12,27 +13,61 @@ namespace Cake.ServiceFabric
     internal sealed class ServiceFabricRunner : IServiceFabricRunner
     {
         private readonly ICakeEnvironment _environment;
-        private readonly IPowerShellHost _powerShell;
-        private readonly FilePath _sdkModulePath;
+        private readonly IPowerShellHost _host;
 
-        public ServiceFabricRunner(IRegistry registry, ICakeEnvironment environment, IPowerShellHost powershell)
+        public ServiceFabricRunner(ICakeEnvironment environment, IPowerShellHost host)
         {
             _environment = environment;
-            _sdkModulePath = ServiceFabricSDKResolver.ResolvePSModulePath(registry);
-            _powerShell = powershell;
+            _host = host;
         }
 
         public void CreatePackage(DirectoryPath packagePath, FilePath outputFile, bool force = false)
         {
-            //_powerShell.Invoke("Import-Module", _sdkModulePath.FullPath.Replace("/", "\\"));
-            //_powerShell.Invoke("New-ServiceFabricApplicationPackage",
-            //    new Dictionary<string, object>
-            //    {
-            //        { "ApplicationPackagePath", packagePath.MakeAbsolute(_environment).FullPath.Replace("/", "\\") },
-            //        { "SFpkgName", outputFile.GetFilename() },
-            //        { "SFpkgOutputPath", outputFile.GetDirectory().MakeAbsolute(_environment).FullPath.Replace("/", "\\") },
-            //        { "Force", force }
-            //    });
+            using (var command = _host.CreateCommand("New-ServiceFabricApplicationPackage"))
+            {
+                command.AddParameters(new Dictionary<string, object>
+                {
+                    { "ApplicationPackagePath", packagePath.MakeAbsolute(_environment).FullPathEscaped() },
+                    { "SFpkgName", outputFile.GetFilename() },
+                    { "SFpkgOutputPath", outputFile.GetDirectory().MakeAbsolute(_environment).FullPathEscaped() },
+                    { "Force", force }
+                });
+
+                command.Invoke();
+            }
+        }
+
+        public IServiceFabricClusterConnection ConnectCluster()
+        {
+            using (var command = _host.CreateCommand("Connect-ServiceFabricCluster"))
+            {
+                command.Invoke();
+            }
+
+            return new ServiceFabricClusterConnection(_host);
+        }
+
+        public IServiceFabricClusterConnection ConnectCluster(FilePath publishProfile)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IServiceFabricClusterConnection ConnectCluster(ServiceFabricClusterConnectionSettings settings)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void GetApplicationStatus(IServiceFabricClusterConnection connection, string applicationName)
+        {
+            using (var command = _host.CreateCommand("Get-ServiceFabricApplicationStatus"))
+            {
+                command.AddParameters(new Dictionary<string, object>
+                {
+                    { "ApplicationName",  applicationName }
+                });
+
+                command.Invoke();
+            }
         }
     }
 }

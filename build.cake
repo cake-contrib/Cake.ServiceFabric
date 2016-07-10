@@ -113,6 +113,7 @@ Task("Run-Integration-Tests")
     });
     
     CakeExecuteScript("./example/build.cake", new CakeSettings {
+        Verbosity = Context.Log.Verbosity,
         ArgumentCustomization = args => {
             args.Append("--paths_tools=./tools");
             args.Append("--paths_addins=./tools/Addins");

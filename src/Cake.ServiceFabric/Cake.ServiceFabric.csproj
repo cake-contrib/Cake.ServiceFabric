@@ -50,6 +50,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Extensions\FilePathExtensions.cs" />
+    <Compile Include="Extensions\DirectoryPathExtensions.cs" />
     <Compile Include="IServiceFabricClusterConnection.cs" />
     <Compile Include="IServiceFabricRunner.cs" />
     <Compile Include="ServiceFabricApplicationStatus.cs" />
@@ -63,6 +65,8 @@
     <Compile Include="ServiceFabricClusterConnectionSettings.cs" />
     <Compile Include="Utilities\PowerShellCommand.cs" />
     <Compile Include="ServiceFabricSDKResolver.cs" />
+    <Compile Include="Utilities\PowerShellHostRawUI.cs" />
+    <Compile Include="Utilities\PowerShellHostUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

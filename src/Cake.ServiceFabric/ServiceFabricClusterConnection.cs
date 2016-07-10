@@ -33,7 +33,7 @@ namespace Cake.ServiceFabric
 
             using (var command = _powerShellHost.CreateCommand("Import-Module"))
             {
-                command.AddArgument(sdkModulePath.FullPath.Replace("/", "\\"));
+                command.AddParameter("name", sdkModulePath.FullPath.Replace("/", "\\"));
                 command.Invoke();
             }
         }
