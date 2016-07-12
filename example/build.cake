@@ -1,4 +1,5 @@
-#addin "Cake.ServiceFabric"
+//#addin "Cake.ServiceFabric"
+#r "../src/Cake.ServiceFabric/bin/Debug/Cake.ServiceFabric.dll"
 
 var target = Argument("target", "Default");
 
@@ -13,17 +14,18 @@ Task("Build")
 
     ServiceFabric.CreatePackage(
       Directory("./ExampleApp/pkg/Release"),
-      File("./tools/package.sfproj")
-    );
+      File("./tools/package.sfproj"),
+      true);
 });
 
 Task("Deploy")
-    .IsDependentOn("Build")
+    //.IsDependentOn("Build")
     .Does(() =>
 {
+    #break
     using(var connection = ServiceFabric.ConnectCluster())
     {
-        ServiceFabric.GetApplicationStatus(connection, "fabric:/ExampleApp");
+        connection.GetApplicationStatus("fabric:/ExampleApp");
     }
 });
 

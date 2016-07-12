@@ -4,6 +4,11 @@ namespace Cake.ServiceFabric
 {
     public interface IServiceFabricClusterConnection : IDisposable
     {
-        ServiceFabricApplicationStatus GetApplicationStatus(string applicationName);
+        string [] ConnectionEndpoint { get; }
+        IServiceFabricClientSettings FabricClientSettings { get; }
+        IServiceFabricGatewayInformation GatewayInformation { get; }
+        IServiceFabricAzureActiveDirectoryMetadata AzureActiveDirectoryMetadata { get; }
+
+        void GetApplicationStatus(string applicationName);
     }
 }

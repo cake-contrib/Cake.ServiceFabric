@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Management.Automation;
 using System.Management.Automation.Runspaces;
-using System.Text;
-using System.Threading.Tasks;
 using Cake.Core.Diagnostics;
 
 namespace Cake.ServiceFabric.Utilities
@@ -36,7 +33,7 @@ namespace Cake.ServiceFabric.Utilities
             _pipeline.Commands.Last().Parameters.Add(name, value);
         }
 
-        public void AddParameters(Dictionary<string, object> parameters)
+        public void AddParameters(IDictionary<string, object> parameters)
         {
             var command = _pipeline.Commands.Last();
 
@@ -49,9 +46,10 @@ namespace Cake.ServiceFabric.Utilities
         public Collection<PSObject> Invoke()
         {
             var command = _pipeline.Commands.Last();
-            _log.Debug("Executing command {0} with arguments {1}",
+            _log.Debug("Executing command: {0} {1}",
                 command.CommandText,
                 string.Join(" ", command.Parameters.Select(x => $"-{x.Name} {x.Value}")));
+
             return _pipeline.Invoke();
         }
 

@@ -8,7 +8,7 @@ namespace Cake.ServiceFabric.Utilities
     public interface IPowerShellCommand : IDisposable
     {
         void AddParameter(string name, object value);
-        void AddParameters(Dictionary<string, object> parameters);
+        void AddParameters(IDictionary<string, object> parameters);
         Collection<PSObject> Invoke();
     }
 }

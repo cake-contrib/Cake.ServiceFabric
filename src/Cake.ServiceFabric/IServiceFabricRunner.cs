@@ -12,7 +12,5 @@ namespace Cake.ServiceFabric
         IServiceFabricClusterConnection ConnectCluster();
         IServiceFabricClusterConnection ConnectCluster(FilePath publishProfile);
         IServiceFabricClusterConnection ConnectCluster(ServiceFabricClusterConnectionSettings settings);
-
-        void GetApplicationStatus(IServiceFabricClusterConnection connection, string applicationName);
     }
 }

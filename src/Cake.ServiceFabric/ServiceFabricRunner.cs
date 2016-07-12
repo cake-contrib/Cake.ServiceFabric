@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Cake.Core;
 using Cake.Core.IO;
 using Cake.ServiceFabric.Extensions;
@@ -41,10 +39,11 @@ namespace Cake.ServiceFabric
         {
             using (var command = _host.CreateCommand("Connect-ServiceFabricCluster"))
             {
-                command.Invoke();
-            }
+                var result = command.Invoke();
 
-            return new ServiceFabricClusterConnection(_host);
+                return ServiceFabricClusterConnectionFactory.CreateConnection(_host, 
+                    result.First(x => x.TypeNames.Contains("Microsoft.ServiceFabric.Powershell.ClusterConnection")));
+            }
         }
 
         public IServiceFabricClusterConnection ConnectCluster(FilePath publishProfile)
@@ -55,19 +54,6 @@ namespace Cake.ServiceFabric
         public IServiceFabricClusterConnection ConnectCluster(ServiceFabricClusterConnectionSettings settings)
         {
             throw new NotImplementedException();
-        }
-
-        public void GetApplicationStatus(IServiceFabricClusterConnection connection, string applicationName)
-        {
-            using (var command = _host.CreateCommand("Get-ServiceFabricApplicationStatus"))
-            {
-                command.AddParameters(new Dictionary<string, object>
-                {
-                    { "ApplicationName",  applicationName }
-                });
-
-                command.Invoke();
-            }
         }
     }
 }

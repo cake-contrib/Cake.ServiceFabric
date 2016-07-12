@@ -52,11 +52,16 @@
   <ItemGroup>
     <Compile Include="Extensions\FilePathExtensions.cs" />
     <Compile Include="Extensions\DirectoryPathExtensions.cs" />
+    <Compile Include="IServiceFabricAzureActiveDirectoryMetadata.cs" />
+    <Compile Include="IServiceFabricClientSettings.cs" />
     <Compile Include="IServiceFabricClusterConnection.cs" />
+    <Compile Include="IServiceFabricGatewayInformation.cs" />
     <Compile Include="IServiceFabricRunner.cs" />
-    <Compile Include="ServiceFabricApplicationStatus.cs" />
+    <Compile Include="ServiceFabricAzureActiveDirectoryMetadata.cs" />
+    <Compile Include="ServiceFabricClientSettings.cs" />
     <Compile Include="ServiceFabricClusterConnection.cs" />
     <Compile Include="ServiceFabricClusterConnectionFactory.cs" />
+    <Compile Include="ServiceFabricGatewayInformation.cs" />
     <Compile Include="ServiceFabricRunner.cs" />
     <Compile Include="Utilities\IPowerShellHost.cs" />
     <Compile Include="Utilities\IPowerShellCommand.cs" />
