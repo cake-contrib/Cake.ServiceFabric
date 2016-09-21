@@ -14,7 +14,6 @@ namespace Cake.ServiceFabric.Utilities
         private readonly ICakeLog _log;
         private readonly Guid _instanceId;
         private readonly PSHostUserInterface _userInterface;
-        private readonly FilePath _sdkModulePath;
 
         public override CultureInfo CurrentCulture => CultureInfo.CurrentCulture;
         public override CultureInfo CurrentUICulture => CultureInfo.CurrentUICulture;
@@ -23,7 +22,7 @@ namespace Cake.ServiceFabric.Utilities
         public override PSHostUserInterface UI => _userInterface;
         public override Version Version => new Version(0, 1, 0);
 
-        public PowerShellHost(ICakeLog log, IRegistry registry)
+        public PowerShellHost(ICakeLog log)
         {
             if(log == null)
             {
@@ -34,13 +33,8 @@ namespace Cake.ServiceFabric.Utilities
             _instanceId = Guid.NewGuid();
             _userInterface = new PowerShellHostUI(log);
             _runspace = RunspaceFactory.CreateRunspace(this);
-            _sdkModulePath = ServiceFabricSDKResolver.ResolvePSModulePath(registry);
 
             _runspace.Open();
-
-            var pipeline = _runspace.CreatePipeline();
-            pipeline.Commands.AddScript("Import-Module " + _sdkModulePath.FullPathQouted());
-            pipeline.Invoke();
         }
 
         public IPowerShellCommand CreateCommand(string command)

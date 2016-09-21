@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Fabric.Query;
+using System.Linq;
 using Cake.ServiceFabric.Utilities;
 
 namespace Cake.ServiceFabric
@@ -41,6 +44,59 @@ namespace Cake.ServiceFabric
             {
                 command.AddParameter("ApplicationName", applicationName);
                 command.Invoke();
+            }
+        }
+
+        public IEnumerable<Application> GetApplications()
+        {
+            using (var command = _powerShellHost.CreateCommand("Get-ServiceFabricApplication"))
+            {
+                var result = command.Invoke();
+
+                return result
+                    .Where(x => x.TypeNames.Contains("System.Fabric.Query.Application"))
+                    .Select(x => x.BaseObject as Application);
+            }
+        }
+
+        public Application GetApplication(Uri applicationName)
+        {
+            using (var command = _powerShellHost.CreateCommand("Get-ServiceFabricApplication"))
+            {
+                command.AddParameter("ApplicationName", applicationName);
+                var result = command.Invoke();
+
+                return result
+                    .First(x => x.TypeNames.Contains("System.Fabric.Query.Application"))
+                    .BaseObject as Application;
+            }
+        }
+
+        public IEnumerable<Service> GetServices(Uri applicationName)
+        {
+            using (var command = _powerShellHost.CreateCommand("Get-ServiceFabricService"))
+            {
+                command.AddParameter("ApplicationName", applicationName);
+                var result = command.Invoke();
+
+                return result
+                    .Where(x => x.TypeNames.Contains("System.Fabric.Query.Service"))
+                    .Select(x => x.BaseObject as Service);
+            }
+        }
+
+        public Service GetService(Uri applicationName, Uri serviceName)
+        {
+            using (var command = _powerShellHost.CreateCommand("Get-ServiceFabricService"))
+            {
+                command.AddParameter("ApplicationName", applicationName);
+                command.AddParameter("ServiceName", serviceName);
+
+                var result = command.Invoke();
+
+                return result
+                    .First(x => x.TypeNames.Contains("System.Fabric.Query.Service"))
+                    .BaseObject as Service;
             }
         }
     }

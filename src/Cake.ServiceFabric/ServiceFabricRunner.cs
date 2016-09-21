@@ -19,22 +19,6 @@ namespace Cake.ServiceFabric
             _host = host;
         }
 
-        public void CreatePackage(DirectoryPath packagePath, FilePath outputFile, bool force = false)
-        {
-            using (var command = _host.CreateCommand("New-ServiceFabricApplicationPackage"))
-            {
-                command.AddParameters(new Dictionary<string, object>
-                {
-                    { "ApplicationPackagePath", packagePath.MakeAbsolute(_environment).FullPathEscaped() },
-                    { "SFpkgName", outputFile.GetFilename() },
-                    { "SFpkgOutputPath", outputFile.GetDirectory().MakeAbsolute(_environment).FullPathEscaped() },
-                    { "Force", force }
-                });
-
-                command.Invoke();
-            }
-        }
-
         public IServiceFabricClusterConnection ConnectCluster()
         {
             using (var command = _host.CreateCommand("Connect-ServiceFabricCluster"))

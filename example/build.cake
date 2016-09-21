@@ -1,4 +1,5 @@
 //#addin "Cake.ServiceFabric"
+#addin nuget:?package=Microsoft.ServiceFabric
 #r "../src/Cake.ServiceFabric/bin/Debug/Cake.ServiceFabric.dll"
 
 var target = Argument("target", "Default");
@@ -11,11 +12,6 @@ Task("Build")
         Configuration = "Release",
         PlatformTarget = PlatformTarget.x64
       }.WithTarget("Package"));
-
-    ServiceFabric.CreatePackage(
-      Directory("./ExampleApp/pkg/Release"),
-      File("./tools/package.sfproj"),
-      true);
 });
 
 Task("Deploy")
@@ -25,7 +21,19 @@ Task("Deploy")
     #break
     using(var connection = ServiceFabric.ConnectCluster())
     {
-        connection.GetApplicationStatus("fabric:/ExampleApp");
+        foreach(var app in connection.GetApplications())
+        {
+            var a = connection.GetApplication(app.ApplicationName);
+
+            Information(string.Format("{0} {1}", a.ApplicationTypeName, a.ApplicationTypeVersion));
+
+            foreach(var service in connection.GetServices(app.ApplicationName))
+            {
+                var s = connection.GetService(app.ApplicationName, service.ServiceName);
+
+                Information(string.Format("{0} {1}", s.ServiceTypeName, s.ServiceManifestVersion));
+            }
+        }
     }
 });
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Fabric.Query;
 
 namespace Cake.ServiceFabric
 {
@@ -9,6 +11,10 @@ namespace Cake.ServiceFabric
         IServiceFabricGatewayInformation GatewayInformation { get; }
         IServiceFabricAzureActiveDirectoryMetadata AzureActiveDirectoryMetadata { get; }
 
-        void GetApplicationStatus(string applicationName);
+        IEnumerable<Application> GetApplications();
+        Application GetApplication(Uri applicationName);
+
+        IEnumerable<Service> GetServices(Uri applicationName);
+        Service GetService(Uri applicationName, Uri serviceName);
     }
 }

@@ -10,7 +10,7 @@ namespace Cake.ServiceFabric
         [CakePropertyAlias]
         public static IServiceFabricRunner ServiceFabric(this ICakeContext context)
         {
-            return new ServiceFabricRunner(context.Environment, new PowerShellHost(context.Log, context.Registry));
+            return new ServiceFabricRunner(context.Environment, new PowerShellHost(context.Log));
         }
     }
 }
