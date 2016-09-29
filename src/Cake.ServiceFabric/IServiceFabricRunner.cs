@@ -4,8 +4,8 @@ namespace Cake.ServiceFabric
 {
     public interface IServiceFabricRunner
     {
-        IServiceFabricClusterConnection ConnectCluster();
-        IServiceFabricClusterConnection ConnectCluster(FilePath publishProfile);
-        IServiceFabricClusterConnection ConnectCluster(ServiceFabricClusterConnectionSettings settings);
+        IServiceFabricClusterConnection Connect();
+        IServiceFabricClusterConnection Connect(ServiceFabricClusterConnectionParameters connectionParameters);
+        IServiceFabricClusterConnection Connect(FilePath publishProfile);
     }
 }

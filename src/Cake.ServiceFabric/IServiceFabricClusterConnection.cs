@@ -1,20 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Fabric.Query;
+using Cake.Core.IO;
 
 namespace Cake.ServiceFabric
 {
     public interface IServiceFabricClusterConnection : IDisposable
     {
-        string [] ConnectionEndpoint { get; }
-        IServiceFabricClientSettings FabricClientSettings { get; }
-        IServiceFabricGatewayInformation GatewayInformation { get; }
-        IServiceFabricAzureActiveDirectoryMetadata AzureActiveDirectoryMetadata { get; }
-
-        IEnumerable<Application> GetApplications();
-        Application GetApplication(Uri applicationName);
-
-        IEnumerable<Service> GetServices(Uri applicationName);
-        Service GetService(Uri applicationName, Uri serviceName);
+        void RemoveApplication(Uri applicationName, string applicationTypeName, string applicationTypeVersion);
+        void PublishApplication(DirectoryPath applicationPackagePath, FilePath applicationParameterFile);
     }
 }

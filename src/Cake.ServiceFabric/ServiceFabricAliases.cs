@@ -1,6 +1,5 @@
 ﻿using Cake.Core;
 using Cake.Core.Annotations;
-using Cake.ServiceFabric.Utilities;
 
 namespace Cake.ServiceFabric
 {
@@ -10,7 +9,7 @@ namespace Cake.ServiceFabric
         [CakePropertyAlias]
         public static IServiceFabricRunner ServiceFabric(this ICakeContext context)
         {
-            return new ServiceFabricRunner(context.Environment, new PowerShellHost(context.Log));
+            return new ServiceFabricRunner(context);
         }
     }
 }
