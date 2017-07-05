@@ -37,9 +37,8 @@ namespace Cake.ServiceFabric
             return Connect(publishProfileParser.Parse(publishProfile).ClusterConnectionParameters);
         }
 
-        public IServiceFabricClusterConnection Connect(ServiceFabricClusterConnectionParameters connectionParameters)
-        {
-            return new ServiceFabricClusterConnection(_clientFactory.CreateFabricClient(connectionParameters)));
+        public IServiceFabricClusterConnection Connect(ServiceFabricClusterConnectionParameters connectionParameters) {
+            return new ServiceFabricClusterConnection(_fileSystem, _log, _clientFactory.CreateFabricClient(connectionParameters));
         }
     }
 }

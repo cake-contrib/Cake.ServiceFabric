@@ -13,6 +13,7 @@ namespace Cake.ServiceFabric
         private readonly IFileSystem _fileSystem;
         private readonly ICakeLog _log;
         private readonly IFabricClient _client;
+        private IFabricClient fabricClient;
 
         public ServiceFabricClusterConnection(ICakeEnvironment environment, IFileSystem fileSystem, ICakeLog log, IFabricClient client)
         {
@@ -20,6 +21,13 @@ namespace Cake.ServiceFabric
             _fileSystem = NotNull(fileSystem, nameof(fileSystem));
             _log = NotNull(log, nameof(log));
             _client = NotNull(client, nameof(client));
+        }
+
+        public ServiceFabricClusterConnection(IFileSystem fileSystem, ICakeLog log, IFabricClient fabricClient)
+        {
+            _fileSystem = fileSystem;
+            _log = log;
+            this.fabricClient = fabricClient;
         }
 
         public void Dispose()

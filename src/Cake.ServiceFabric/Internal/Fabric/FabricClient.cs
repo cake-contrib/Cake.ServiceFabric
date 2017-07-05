@@ -6,7 +6,6 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
-using Cake.Core.IO;
 using static Cake.ServiceFabric.Internal.Utilities.Guard;
 
 namespace Cake.ServiceFabric.Internal.Fabric
@@ -15,9 +14,9 @@ namespace Cake.ServiceFabric.Internal.Fabric
     {
         private readonly System.Fabric.FabricClient _client;
 
-        public FabricClient(System.Fabric.FabricClient _client)
+        public FabricClient(System.Fabric.FabricClient client)
         {
-            _client = NotNull(_client, nameof(_client));
+            _client = NotNull(client, nameof(client));
         }
 
         public void Dispose()

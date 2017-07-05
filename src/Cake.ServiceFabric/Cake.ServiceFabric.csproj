@@ -66,27 +66,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions\FilePathExtensions.cs" />
-    <Compile Include="Extensions\DirectoryPathExtensions.cs" />
-    <Compile Include="IServiceFabricAzureActiveDirectoryMetadata.cs" />
-    <Compile Include="IServiceFabricClientSettings.cs" />
+    <Compile Include="Internal\Fabric\FabricClient.cs" />
+    <Compile Include="Internal\Fabric\FabricClientFactory.cs" />
+    <Compile Include="Internal\Fabric\IFabricClient.cs" />
+    <Compile Include="Internal\Fabric\IFabricClientFactory.cs" />
+    <Compile Include="Internal\PublishProfile.cs" />
+    <Compile Include="Internal\PublishProfileParser.cs" />
+    <Compile Include="Internal\ServiceFabricClusterConnection.cs" />
+    <Compile Include="Internal\ServiceFabricRunner.cs" />
+    <Compile Include="Internal\Utilities\Guard.cs" />
     <Compile Include="IServiceFabricClusterConnection.cs" />
-    <Compile Include="IServiceFabricGatewayInformation.cs" />
     <Compile Include="IServiceFabricRunner.cs" />
-    <Compile Include="ServiceFabricAzureActiveDirectoryMetadata.cs" />
-    <Compile Include="ServiceFabricClientSettings.cs" />
-    <Compile Include="ServiceFabricClusterConnection.cs" />
-    <Compile Include="ServiceFabricClusterConnectionFactory.cs" />
-    <Compile Include="ServiceFabricGatewayInformation.cs" />
-    <Compile Include="ServiceFabricRunner.cs" />
-    <Compile Include="Utilities\IPowerShellHost.cs" />
-    <Compile Include="Utilities\IPowerShellCommand.cs" />
-    <Compile Include="Utilities\PowerShellHost.cs" />
+    <Compile Include="ServiceFabricClusterConnectionParameters.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceFabricClusterConnectionSettings.cs" />
-    <Compile Include="Utilities\PowerShellCommand.cs" />
-    <Compile Include="Utilities\PowerShellHostRawUI.cs" />
-    <Compile Include="Utilities\PowerShellHostUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
